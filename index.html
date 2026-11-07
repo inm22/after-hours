@@ -143,21 +143,33 @@
     .route-topline strong { color:var(--lime); }
     .map-footer { position: absolute; bottom: 10px; left: 10px; right: 10px; background: #101f38f2; border: 1px solid #30435f; border-radius: 12px; padding: 10px; font-size: 10px; display: flex; justify-content: space-between; z-index:3; }
     .map-footer strong { color: var(--lime); }
-    .location-map { height: 400px; position: relative; background: #0a1a30; overflow: hidden; }
+    .location-map { height: 400px; position: relative; background: #0a1a30; overflow: hidden; border-radius: 0 0 22px 22px; }
     .location-map .location-bg { position:absolute; inset:0; }
-    .crew-count { position: absolute; top: 13px; left: 12px; right: 12px; background: #122540ed; border: 1px solid #2b405f; border-radius: 10px; padding: 9px; font-size: 10px; display: flex; justify-content: space-between; z-index:2; }
+    .crew-count { display:none; }
     .crew-count strong { color: var(--lime); }
-    .crew-cluster { position:absolute; width:150px; height:150px; left:50%; top:45%; transform:translate(-50%,-50%); border:2px solid #a8f52d99; border-radius:50%; box-shadow:inset 0 0 0 13px #a8f52d0b; }
-    .crew-cluster:before { content:""; position:absolute; inset:18px; border:1px solid #a8f52d55; border-radius:50%; }
-    .crew-dot { position:absolute; width:15px; height:15px; border-radius:50%; background:var(--lime); border:2px solid #eaffb9; box-shadow:0 0 0 7px #a8f52d22, 0 0 15px #a8f52d55; }
-    .crew-dot.d1 { left:30px; top:37px; } .crew-dot.d2 { left:66px; top:22px; } .crew-dot.d3 { right:25px; top:48px; }
+    .crew-cluster { position:absolute; width:145px; height:145px; left:27%; top:48%; transform:translate(-50%,-50%); border:2px solid #a8f52d66; border-radius:50%; background:#a8f52d16; box-shadow:inset 0 0 22px #a8f52d10, 0 0 18px #a8f52d12; z-index:2; }
+    .crew-cluster:before { content:""; position:absolute; inset:0; border:0; border-radius:50%; }
+    .crew-dot { position:absolute; width:17px; height:17px; border-radius:50%; background:var(--lime); border:0; box-shadow:0 0 0 7px #a8f52d1a, 0 0 14px #a8f52d55; z-index:3; }
+    .crew-dot.d1 { left:22px; top:57px; } .crew-dot.d2 { left:48px; top:27px; } .crew-dot.d3 { right:42px; top:43px; } .crew-dot.d4 { left:39px; bottom:34px; } .crew-dot.d5 { right:23px; bottom:47px; } .crew-dot.d2 { left:66px; top:22px; } .crew-dot.d3 { right:25px; top:48px; }
     .crew-dot.d4 { left:44px; bottom:26px; } .crew-dot.d5 { right:34px; bottom:24px; }
-    .crew-dot.alone { width:17px; height:17px; right:27px; top:108px; box-shadow:0 0 0 10px #a8f52d1f,0 0 18px #a8f52d66; }
-    .alone-label { position:absolute; top:139px; right:13px; background:#101f38; border:1px solid #344765; border-radius:8px; padding:5px 7px; color:#eaf1ff; font-size:9px; z-index:2; }
-    .cluster-label { position:absolute; top:calc(45% + 83px); left:50%; transform:translateX(-50%); color:#e8f0ff; font-size:9px; white-space:nowrap; }
-    .location-alert { position: absolute; left: 10px; right: 10px; bottom: 13px; background: #0c1a2ef5; border: 1px solid #3b4c6b; border-radius: 13px; padding: 12px; text-align: left; box-shadow: 0 8px 24px #0008; z-index:4; }
-    .location-alert .alert-top { font-size: 10px; }
-    .location-alert .alert-actions span { font-size: 9px; }
+    .crew-dot.alone { width:19px; height:19px; right:18%; top:70%; box-shadow:0 0 0 10px #a8f52d18,0 0 18px #a8f52d66; }
+    .alone-label { display:none; }
+    .cluster-label { display:none; }
+    .location-alert { position:absolute; left:34%; right:6%; top:22px; bottom:auto; background:#10172ff5; border:1.5px solid #8b45ff; border-radius:15px; padding:10px 10px 9px; text-align:left; box-shadow:0 8px 24px #0007; z-index:5; }
+    .location-alert .alert-top { font-size:10px; gap:8px; line-height:1.25; }
+    .location-alert .alert-actions span { font-size:9px; padding:7px 3px; }
+
+    @media (max-width: 600px) {
+      .location-alert { left: 33%; right: 5%; top: 20px; padding: 9px; }
+      .location-alert .alert-symbol { width: 29px; height: 29px; }
+      .crew-cluster { width: 132px; height: 132px; left: 27%; top: 49%; }
+      .crew-dot.d1 { left: 18px; top: 52px; }
+      .crew-dot.d2 { left: 43px; top: 23px; }
+      .crew-dot.d3 { right: 35px; top: 39px; }
+      .crew-dot.d4 { left: 34px; bottom: 29px; }
+      .crew-dot.d5 { right: 19px; bottom: 42px; }
+    }
+
     .footer { border-top: 1px solid #25344e; padding: 34px 0 40px; text-align: center; }
     .footer-brand { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 34px; font-weight: 800; letter-spacing: -1px; }
     .footer-brand .brand-mark { width: 42px; height: 48px; }
@@ -385,25 +397,34 @@
               <div class="status"><span>11:43</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
               <div class="screen-heading"><span>‹</span><span>Night Crew</span><span>•••</span></div>
               <div class="location-map">
-                <div class="crew-count"><span>Live crew locations</span><strong>● 5 members together</strong></div>
-                <svg class="location-bg" viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Street map showing five green location dots grouped together and one separated dot">
+                <svg class="location-bg" viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Dark street map with five grouped green location dots and one separated green location dot">
                   <rect width="240" height="400" fill="#0a1a30"/>
-                  <g fill="none" stroke="#142b46" stroke-width="15"><path d="M-30 55 270 330M-30 190 270 25M-25 350 260 100M28 -20 215 430M180 -20 55 430"/></g>
-                  <g fill="none" stroke="#29415f" stroke-width="2"><path d="M-20 90 260 310M-20 245 260 40M45 -20 190 420M210 -20 55 420M0 320 240 180"/></g>
-                  <g fill="#1a3451"><rect x="14" y="104" width="40" height="26" rx="3"/><rect x="163" y="205" width="50" height="31" rx="3"/><rect x="22" y="280" width="36" height="26" rx="3"/></g>
+                  <g fill="none" stroke="#142b46" stroke-width="13">
+                    <path d="M-35 45 280 330M-30 165 270 5M-25 360 265 90M20 -25 225 430M175 -30 45 430"/>
+                    <path d="M-30 280 260 125M-20 90 250 250"/>
+                  </g>
+                  <g fill="none" stroke="#29415f" stroke-width="2.2" opacity=".9">
+                    <path d="M-20 82 260 305M-20 230 260 35M42 -20 195 420M218 -20 48 420M-10 340 245 165M15 25 240 375"/>
+                  </g>
+                  <g fill="#142b46" opacity=".85">
+                    <path d="m20 32 30-13 14 28-30 14zM151 70l28-12 14 27-28 13zM13 260l33-14 15 30-34 14zM175 270l36-15 14 31-35 15z"/>
+                  </g>
+                  <path d="M100 211 C133 220 128 255 150 270 S184 278 199 290" fill="none" stroke="#9a82ff" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 5"/>
                 </svg>
                 <div class="crew-cluster">
                   <i class="crew-dot d1"></i><i class="crew-dot d2"></i><i class="crew-dot d3"></i><i class="crew-dot d4"></i><i class="crew-dot d5"></i>
                 </div>
-                <div class="cluster-label">● Crew meetup · 5 nearby</div>
                 <i class="crew-dot alone"></i>
-                <div class="alone-label">Ellie · nearby</div>
                 <div class="location-alert">
                   <div class="alert-top">
-                    <svg class="alert-symbol" viewBox="0 0 40 40" fill="none"><path d="M17 4 2 31c-2 4 0 6 4 6h28c4 0 6-3 4-6L23 4c-1-3-5-3-6 0Z" fill="currentColor"/><path d="M20 13v10m0 5v1" stroke="#25113f" stroke-width="3" stroke-linecap="round"/></svg>
+                    <svg class="alert-symbol" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M17 4 2 31c-2 4 0 6 4 6h28c4 0 6-3 4-6L23 4c-1-3-5-3-6 0Z" fill="currentColor"/><path d="M20 13v10m0 5v1" stroke="#25113f" stroke-width="3" stroke-linecap="round"/></svg>
                     <div><strong>Ellie is all alone.</strong><br /><span>Check in?</span></div>
                   </div>
                   <div class="alert-actions"><span>Ignore</span><span>Check In</span></div>
+                </div>
+                <div style="position:absolute;top:0;right:10%;z-index:4;display:flex;gap:7px;transform:rotate(18deg)">
+                  <i style="display:block;width:4px;height:17px;background:var(--lime);border-radius:4px"></i>
+                  <i style="display:block;width:4px;height:17px;background:var(--lime);border-radius:4px;transform:translateY(8px)"></i>
                 </div>
               </div>
             </div>
