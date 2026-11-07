@@ -129,19 +129,33 @@
     .scene-caption { position: absolute; left: 10px; bottom: 9px; font-size: 10px; font-weight: 750; text-shadow: 0 2px 5px #000; }
     .feed-actions { color: #b9c3dc; font-size: 10px; padding: 2px 3px 9px; display: flex; gap: 14px; }
     .feed-actions b { color: #ff5e8d; }
-    .map-area { height: 400px; position: relative; overflow: hidden; background: #0b1c34; }
-    .map-area svg { width: 100%; height: 100%; display: block; }
-    .map-label { position: absolute; background: #101f38; border: 1px solid #344765; border-radius: 9px; padding: 7px 9px; font-size: 9px; box-shadow: 0 5px 15px #0007; }
-    .map-label.one { top: 46px; left: 13px; }
-    .map-label.two { top: 172px; right: 10px; }
-    .map-label.three { bottom: 58px; left: 16px; }
-    .map-footer { position: absolute; bottom: 10px; left: 10px; right: 10px; background: #101f38; border: 1px solid #30435f; border-radius: 12px; padding: 10px; font-size: 10px; display: flex; justify-content: space-between; }
+    .map-area { height: 400px; position: relative; overflow: hidden; background: #0a1a30; }
+    .map-area svg, .location-map svg { width: 100%; height: 100%; display: block; }
+    .route-map-bg { position:absolute; inset:0; opacity:.95; }
+    .route-stops { position:absolute; inset:0; }
+    .route-stop { position:absolute; display:flex; align-items:center; gap:7px; padding:5px 8px 5px 5px; border-radius:24px; background:#0a172aee; border:1px solid #2b405f; box-shadow:0 5px 15px #0008; color:#f5f7ff; font-size:9px; font-weight:700; white-space:nowrap; }
+    .route-stop img { width:31px; height:31px; border-radius:50%; object-fit:cover; border:1.5px solid var(--lime); }
+    .route-stop small { display:block; color:#9caac6; font-size:7px; font-weight:500; margin-top:2px; }
+    .route-stop.one { top:49px; left:9px; }
+    .route-stop.two { top:168px; right:8px; }
+    .route-stop.three { bottom:65px; left:15px; }
+    .route-topline { position:absolute; top:9px; left:11px; right:11px; display:flex; justify-content:space-between; color:#dce4f6; font-size:9px; z-index:2; }
+    .route-topline strong { color:var(--lime); }
+    .map-footer { position: absolute; bottom: 10px; left: 10px; right: 10px; background: #101f38f2; border: 1px solid #30435f; border-radius: 12px; padding: 10px; font-size: 10px; display: flex; justify-content: space-between; z-index:3; }
     .map-footer strong { color: var(--lime); }
-    .location-map { height: 400px; position: relative; background: #0b1c34; overflow: hidden; }
-    .location-map svg { width: 100%; height: 100%; display: block; }
-    .crew-count { position: absolute; top: 13px; left: 12px; right: 12px; background: #122540; border: 1px solid #2b405f; border-radius: 10px; padding: 9px; font-size: 10px; display: flex; justify-content: space-between; }
+    .location-map { height: 400px; position: relative; background: #0a1a30; overflow: hidden; }
+    .location-map .location-bg { position:absolute; inset:0; }
+    .crew-count { position: absolute; top: 13px; left: 12px; right: 12px; background: #122540ed; border: 1px solid #2b405f; border-radius: 10px; padding: 9px; font-size: 10px; display: flex; justify-content: space-between; z-index:2; }
     .crew-count strong { color: var(--lime); }
-    .location-alert { position: absolute; left: 10px; right: 10px; bottom: 13px; background: #0c1a2e; border: 1px solid #3b4c6b; border-radius: 13px; padding: 12px; text-align: left; box-shadow: 0 8px 24px #0008; }
+    .crew-cluster { position:absolute; width:150px; height:150px; left:50%; top:45%; transform:translate(-50%,-50%); border:2px solid #a8f52d99; border-radius:50%; box-shadow:inset 0 0 0 13px #a8f52d0b; }
+    .crew-cluster:before { content:""; position:absolute; inset:18px; border:1px solid #a8f52d55; border-radius:50%; }
+    .crew-dot { position:absolute; width:15px; height:15px; border-radius:50%; background:var(--lime); border:2px solid #eaffb9; box-shadow:0 0 0 7px #a8f52d22, 0 0 15px #a8f52d55; }
+    .crew-dot.d1 { left:30px; top:37px; } .crew-dot.d2 { left:66px; top:22px; } .crew-dot.d3 { right:25px; top:48px; }
+    .crew-dot.d4 { left:44px; bottom:26px; } .crew-dot.d5 { right:34px; bottom:24px; }
+    .crew-dot.alone { width:17px; height:17px; right:27px; top:108px; box-shadow:0 0 0 10px #a8f52d1f,0 0 18px #a8f52d66; }
+    .alone-label { position:absolute; top:139px; right:13px; background:#101f38; border:1px solid #344765; border-radius:8px; padding:5px 7px; color:#eaf1ff; font-size:9px; z-index:2; }
+    .cluster-label { position:absolute; top:calc(45% + 83px); left:50%; transform:translateX(-50%); color:#e8f0ff; font-size:9px; white-space:nowrap; }
+    .location-alert { position: absolute; left: 10px; right: 10px; bottom: 13px; background: #0c1a2ef5; border: 1px solid #3b4c6b; border-radius: 13px; padding: 12px; text-align: left; box-shadow: 0 8px 24px #0008; z-index:4; }
     .location-alert .alert-top { font-size: 10px; }
     .location-alert .alert-actions span { font-size: 9px; }
     .footer { border-top: 1px solid #25344e; padding: 34px 0 40px; text-align: center; }
@@ -336,17 +350,26 @@
               <div class="status"><span>11:43</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
               <div class="screen-heading"><span>‹</span><span>Tonight's Route</span><span>•••</span></div>
               <div class="map-area">
-                <svg viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Map with route connecting three stops">
-                  <rect width="240" height="400" fill="#0b1c34"/>
-                  <g stroke="#203651" stroke-width="13" fill="none" opacity=".9"><path d="M-30 60 270 330M-30 180 270 20M-30 350 260 110M20 -30 220 430M145 -30 40 430"/></g>
-                  <g stroke="#304865" stroke-width="2" fill="none"><path d="M0 90 240 310M0 220 240 20M0 340 240 120M60 0 170 400M190 0 80 400"/></g>
-                  <path d="M60 75C90 115 165 132 155 205S75 270 90 335" stroke="#a8f52d" stroke-width="3" stroke-dasharray="3 8" stroke-linecap="round" fill="none"/>
-                  <g fill="#a8f52d" stroke="#e5ffb0" stroke-width="2"><circle cx="60" cy="75" r="8"/><circle cx="155" cy="205" r="8"/><circle cx="90" cy="335" r="8"/></g>
-                  <g fill="#a8f52d" opacity=".15"><circle cx="60" cy="75" r="18"/><circle cx="155" cy="205" r="18"/><circle cx="90" cy="335" r="18"/></g>
+                <div class="route-topline"><span>TONIGHT'S STOPS</span><strong>● LIVE ROUTE</strong></div>
+                <svg class="route-map-bg" viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Dark street map with a dotted route connecting three nightlife stops">
+                  <rect width="240" height="400" fill="#0a1a30"/>
+                  <g fill="none" stroke="#142b46" stroke-width="15" opacity=".95">
+                    <path d="M-35 70 270 345M-35 205 270 28M-25 365 260 110M28 -30 218 430M145 -30 42 430"/>
+                  </g>
+                  <g fill="none" stroke="#29415f" stroke-width="2.2" opacity=".9">
+                    <path d="M-20 43 260 295M-25 158 260 12M-15 315 250 86M50 -20 225 420M185 -20 65 420M0 270 240 220"/>
+                    <path d="M15 0 0 400M82 0 62 400M160 0 178 400M220 0 208 400" stroke-width="1"/>
+                  </g>
+                  <g fill="#1a3451" opacity=".8"><rect x="12" y="105" width="35" height="25" rx="3"/><rect x="166" y="70" width="44" height="31" rx="3"/><rect x="105" y="270" width="38" height="24" rx="3"/><rect x="14" y="310" width="32" height="25" rx="3"/></g>
+                  <path d="M48 91 C70 111 77 129 96 151 S155 176 161 211 S124 270 101 319" fill="none" stroke="#a8f52d" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 8"/>
+                  <g fill="#a8f52d" stroke="#e9ffbf" stroke-width="1.5"><circle cx="48" cy="91" r="6"/><circle cx="161" cy="211" r="6"/><circle cx="101" cy="319" r="6"/></g>
+                  <g fill="#a8f52d" opacity=".16"><circle cx="48" cy="91" r="17"/><circle cx="161" cy="211" r="17"/><circle cx="101" cy="319" r="17"/></g>
                 </svg>
-                <div class="map-label one">1 · The Watering Hole</div>
-                <div class="map-label two">2 · Stone Pub</div>
-                <div class="map-label three">3 · Late-night bites</div>
+                <div class="route-stops">
+                  <div class="route-stop one"><img src="afterhours-assets/nightclub-cocktails.png" alt=""/><span>1 · The Watering Hole<small>Arrived · 9:42 PM</small></span></div>
+                  <div class="route-stop two"><img src="afterhours-assets/rooftop-bar.png" alt=""/><span>2 · Stone Pub<small>Arrived · 11:08 PM</small></span></div>
+                  <div class="route-stop three"><img src="afterhours-assets/nightclub-cocktails.png" alt=""/><span>3 · Late-night bites<small>Next stop · 12:15 AM</small></span></div>
+                </div>
                 <div class="map-footer"><span>3 stops · 1.8 mi</span><strong>Route saved ✓</strong></div>
               </div>
             </div>
@@ -362,20 +385,19 @@
               <div class="status"><span>11:43</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
               <div class="screen-heading"><span>‹</span><span>Night Crew</span><span>•••</span></div>
               <div class="location-map">
-                <div class="crew-count"><span>Live crew locations</span><strong>● 5 online</strong></div>
-                <svg viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Five green location dots together and one separated dot">
-                  <rect width="240" height="400" fill="#0b1c34"/>
-                  <g stroke="#203651" stroke-width="13" fill="none"><path d="M-20 70 270 330M-30 200 270 40M-30 350 250 100M35 -20 200 430M190 -20 50 430"/></g>
-                  <g stroke="#304865" stroke-width="2" fill="none"><path d="M0 115 240 300M0 270 240 70M65 0 180 400M210 0 65 400"/></g>
-                  <circle cx="107" cy="190" r="62" fill="#a8f52d" opacity=".06" stroke="#a8f52d" stroke-width="2"/>
-                  <circle cx="107" cy="190" r="42" fill="#a8f52d" opacity=".07" stroke="#a8f52d" stroke-width="1.5"/>
-                  <g fill="#a8f52d" stroke="#e5ffb0" stroke-width="2">
-                    <circle cx="88" cy="174" r="7"/><circle cx="115" cy="164" r="7"/><circle cx="129" cy="190" r="7"/><circle cx="99" cy="211" r="7"/><circle cx="121" cy="220" r="7"/>
-                    <circle cx="198" cy="92" r="8"/>
-                  </g>
-                  <g fill="#a8f52d" opacity=".17"><circle cx="88" cy="174" r="17"/><circle cx="115" cy="164" r="17"/><circle cx="129" cy="190" r="17"/><circle cx="99" cy="211" r="17"/><circle cx="121" cy="220" r="17"/><circle cx="198" cy="92" r="20"/></g>
-                  <path d="M198 92 159 130" stroke="#a8f52d" stroke-width="1.5" stroke-dasharray="4 5" opacity=".7"/>
+                <div class="crew-count"><span>Live crew locations</span><strong>● 5 members together</strong></div>
+                <svg class="location-bg" viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Street map showing five green location dots grouped together and one separated dot">
+                  <rect width="240" height="400" fill="#0a1a30"/>
+                  <g fill="none" stroke="#142b46" stroke-width="15"><path d="M-30 55 270 330M-30 190 270 25M-25 350 260 100M28 -20 215 430M180 -20 55 430"/></g>
+                  <g fill="none" stroke="#29415f" stroke-width="2"><path d="M-20 90 260 310M-20 245 260 40M45 -20 190 420M210 -20 55 420M0 320 240 180"/></g>
+                  <g fill="#1a3451"><rect x="14" y="104" width="40" height="26" rx="3"/><rect x="163" y="205" width="50" height="31" rx="3"/><rect x="22" y="280" width="36" height="26" rx="3"/></g>
                 </svg>
+                <div class="crew-cluster">
+                  <i class="crew-dot d1"></i><i class="crew-dot d2"></i><i class="crew-dot d3"></i><i class="crew-dot d4"></i><i class="crew-dot d5"></i>
+                </div>
+                <div class="cluster-label">● Crew meetup · 5 nearby</div>
+                <i class="crew-dot alone"></i>
+                <div class="alone-label">Ellie · nearby</div>
                 <div class="location-alert">
                   <div class="alert-top">
                     <svg class="alert-symbol" viewBox="0 0 40 40" fill="none"><path d="M17 4 2 31c-2 4 0 6 4 6h28c4 0 6-3 4-6L23 4c-1-3-5-3-6 0Z" fill="currentColor"/><path d="M20 13v10m0 5v1" stroke="#25113f" stroke-width="3" stroke-linecap="round"/></svg>
@@ -427,7 +449,7 @@
 
   <footer class="footer">
     <a class="footer-brand" href="#">
-      <svg class="brand-mark" viewBox="0 0 48 56" fill="none" aria-hidden="true"><path d="M24 3C14 3 5 9 4 19c-1 12 10 25 20 33 10-8 21-21 20-33C43 9 34 3 24 3Z" stroke="currentColor" stroke-width="4.5"/><path d="m24 15 3.5 6.2 7 1.2-5 4.9 1.1 7-6.6-3.3-6.6 3.3 1.1-7-5-4.9 7-1.2L24 15Z" fill="currentColor"/></svg>
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="3.5"/><circle cx="24" cy="6" r="4.7" fill="currentColor"/><circle cx="8.4" cy="33" r="4.7" fill="currentColor"/><circle cx="39.6" cy="33" r="4.7" fill="currentColor"/></svg>
       <span>After<span class="logo-hours">Hours</span></span>
     </a>
     <div class="footer-tag">A SAFER NIGHT OUT</div>
