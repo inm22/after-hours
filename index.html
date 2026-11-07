@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#061326" />
+  <title>AfterHours — A Safer Night Out</title>
+  <meta name="description" content="Go out. Stay connected. AfterHours keeps your crew in the loop." />
+  <style>
+    :root {
+      --navy: #061326;
+      --navy-2: #0a1b33;
+      --panel: #0b1a30;
+      --panel-2: #10233e;
+      --line: #263854;
+      --lime: #a8f52d;
+      --lime-2: #c1ff43;
+      --purple: #9862ff;
+      --lavender: #a9addb;
+      --white: #f7f8ff;
+      --muted: #a7b1cb;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--white);
+      background: var(--navy);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .page { width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+    .site-header {
+      height: 102px; display: flex; align-items: center; justify-content: space-between;
+      gap: 28px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 13px; font-size: 29px; font-weight: 760; letter-spacing: -1.1px; }
+    .brand-mark { width: 48px; height: 55px; color: var(--lime); flex: none; }
+    .nav { display: flex; align-items: center; gap: 36px; font-size: 14px; font-weight: 600; }
+    .nav a:not(.button):hover { color: var(--lime); }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      min-height: 48px; padding: 0 25px; border-radius: 999px;
+      background: var(--lime); color: #081323; font-weight: 750; border: 0;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .button:hover { background: var(--lime-2); transform: translateY(-2px); }
+    .button svg { width: 17px; height: 17px; }
+    .nav .button { min-height: 43px; padding: 0 22px; font-size: 13px; }
+    .hero {
+      min-height: 490px; display: grid; grid-template-columns: 1.06fr .94fr;
+      align-items: center; gap: 24px; position: relative; padding: 10px 0 0;
+    }
+    .hero-copy { position: relative; z-index: 2; padding: 12px 0 45px; }
+    .eyebrow { color: var(--lime); font-size: 12px; text-transform: uppercase; letter-spacing: 2.8px; font-weight: 800; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: clamp(54px, 6.3vw, 82px); line-height: .98; letter-spacing: -4.5px; font-weight: 820; }
+    h1 .accent { color: var(--lime); }
+    .hero-copy p { color: var(--lavender); font-size: clamp(20px, 2.5vw, 29px); line-height: 1.35; letter-spacing: -.7px; max-width: 500px; margin: 25px 0 34px; }
+    .hero-copy .button { min-height: 55px; padding: 0 29px; font-size: 17px; }
+    .hero-visual { min-height: 470px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .orbit { position: absolute; width: 440px; height: 440px; border: 2px solid #4d8d2c; border-radius: 50%; opacity: .65; }
+    .orbit:after { content: ""; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--lime); top: 70px; right: 17px; box-shadow: 0 0 22px var(--lime); }
+    .phone {
+      width: 258px; height: 505px; padding: 8px; border-radius: 39px;
+      background: linear-gradient(135deg, #b8bdc9, #303a4a 15%, #060b13 34%, #8993a2 52%, #151c2b 72%, #a4acb8);
+      box-shadow: 0 24px 65px #0009, inset 0 0 0 1px #e3e8f7aa;
+      position: relative; z-index: 1; transform: rotate(8deg);
+    }
+    .phone-inner {
+      height: 100%; border-radius: 32px; overflow: hidden; background: #08172b;
+      border: 1px solid #1d2d47; position: relative;
+    }
+    .phone-inner:before {
+      content: ""; position: absolute; z-index: 5; top: 8px; left: 50%; transform: translateX(-50%);
+      width: 86px; height: 21px; border-radius: 0 0 14px 14px; background: #020711;
+    }
+    .status { height: 36px; display: flex; align-items: center; justify-content: space-between; padding: 7px 17px 0; font-size: 9px; font-weight: 750; color: #f6f7ff; position: relative; z-index: 2; }
+    .status-icons { letter-spacing: 1px; }
+    .appbar { height: 48px; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 13px; font-weight: 750; border-bottom: 1px solid #1b2b43; }
+    .mini-mark { width: 19px; height: 22px; color: var(--lime); }
+    .chat-screen { padding: 13px 13px 14px; }
+    .night-title { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 10px; margin-bottom: 14px; }
+    .night-title strong { color: var(--white); font-size: 13px; }
+    .chat-date { text-align: center; color: #7786a7; font-size: 9px; margin: 4px 0 14px; }
+    .message { max-width: 88%; margin: 8px 0; }
+    .message .name { color: #aeb9d4; font-size: 9px; margin: 0 0 4px 6px; }
+    .bubble { background: #192b47; border: 1px solid #263b5a; padding: 9px 11px; border-radius: 13px 13px 13px 4px; font-size: 10px; line-height: 1.35; color: #f4f5ff; }
+    .message.mine { margin-left: auto; }
+    .message.mine .name { text-align: right; margin-right: 6px; }
+    .message.mine .bubble { background: #6842c9; border-color: #805cf1; border-radius: 13px 13px 4px 13px; }
+    .system-note { margin: 14px 0; text-align: center; color: var(--lime); font-size: 9px; }
+    .chat-input { position: absolute; left: 12px; right: 12px; bottom: 13px; border: 1px solid #263a57; background: #0b1a30; color: #7887a5; border-radius: 22px; padding: 10px 12px; font-size: 9px; }
+    .alert-card { position: absolute; left: 13px; right: 13px; bottom: 18px; padding: 13px 12px; border-radius: 17px; background: #0b192d; border: 1px solid #30415d; box-shadow: 0 12px 30px #0008; transform: rotate(-1deg); }
+    .alert-top { display: flex; gap: 10px; align-items: center; font-size: 11px; line-height: 1.35; }
+    .alert-symbol { width: 31px; height: 31px; color: var(--purple); flex: none; }
+    .alert-top span { color: var(--lavender); }
+    .alert-actions { display: flex; gap: 7px; margin-top: 11px; }
+    .alert-actions span { flex: 1; text-align: center; border-radius: 20px; padding: 8px 4px; background: #1a2942; font-size: 10px; }
+    .alert-actions span:last-child { background: var(--lime); color: #091426; font-weight: 800; }
+    .features {
+      display: grid; grid-template-columns: repeat(4, 1fr); margin: 5px 0 54px;
+      border-top: 1px solid #1d2c44; border-bottom: 1px solid #1d2c44; padding: 22px 0;
+    }
+    .feature { text-align: center; padding: 0 15px; border-right: 1px solid #59617b; }
+    .feature:last-child { border-right: 0; }
+    .feature svg { width: 43px; height: 43px; color: var(--lime); stroke: currentColor; fill: none; stroke-width: 1.8; margin-bottom: 8px; }
+    .feature p { margin: 0; font-size: 16px; line-height: 1.35; color: #e6e8fa; font-weight: 550; }
+    .showcase { padding: 4px 0 75px; }
+    .section-heading { text-align: center; margin-bottom: 30px; }
+    .section-heading .eyebrow { margin-bottom: 9px; }
+    .section-heading h2 { margin: 0; font-size: clamp(28px, 4vw, 42px); letter-spacing: -1.5px; }
+    .section-heading p { color: var(--muted); margin: 10px auto 0; max-width: 540px; line-height: 1.5; }
+    .phone-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; align-items: start; }
+    .phone-card { text-align: center; }
+    .phone-card h3 { font-size: 18px; margin: 0 0 6px; }
+    .phone-card > p { color: var(--muted); font-size: 13px; margin: 0 0 20px; }
+    .phone.small { width: min(100%, 258px); height: 500px; margin: 0 auto; transform: none; }
+    .screen-heading { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; font-size: 12px; font-weight: 750; border-bottom: 1px solid #1c2e49; }
+    .screen-heading small { color: #8f9dbb; font-weight: 500; display: block; margin-top: 3px; }
+    .feed { padding: 10px; }
+    .feed-user { display: flex; justify-content: space-between; align-items: center; font-size: 10px; margin: 2px 2px 8px; }
+    .feed-user span:last-child { color: var(--lime); }
+    .scene {
+      height: 145px; border-radius: 12px; overflow: hidden; position: relative; margin-bottom: 9px;
+      background: #17243c; border: 1px solid #2a3b58;
+    }
+    .scene svg { width: 100%; height: 100%; display: block; }
+    .scene-caption { position: absolute; left: 10px; bottom: 9px; font-size: 10px; font-weight: 750; text-shadow: 0 2px 5px #000; }
+    .feed-actions { color: #b9c3dc; font-size: 10px; padding: 2px 3px 9px; display: flex; gap: 14px; }
+    .feed-actions b { color: #ff5e8d; }
+    .map-area { height: 400px; position: relative; overflow: hidden; background: #0b1c34; }
+    .map-area svg { width: 100%; height: 100%; display: block; }
+    .map-label { position: absolute; background: #101f38; border: 1px solid #344765; border-radius: 9px; padding: 7px 9px; font-size: 9px; box-shadow: 0 5px 15px #0007; }
+    .map-label.one { top: 46px; left: 13px; }
+    .map-label.two { top: 172px; right: 10px; }
+    .map-label.three { bottom: 58px; left: 16px; }
+    .map-footer { position: absolute; bottom: 10px; left: 10px; right: 10px; background: #101f38; border: 1px solid #30435f; border-radius: 12px; padding: 10px; font-size: 10px; display: flex; justify-content: space-between; }
+    .map-footer strong { color: var(--lime); }
+    .location-map { height: 400px; position: relative; background: #0b1c34; overflow: hidden; }
+    .location-map svg { width: 100%; height: 100%; display: block; }
+    .crew-count { position: absolute; top: 13px; left: 12px; right: 12px; background: #122540; border: 1px solid #2b405f; border-radius: 10px; padding: 9px; font-size: 10px; display: flex; justify-content: space-between; }
+    .crew-count strong { color: var(--lime); }
+    .location-alert { position: absolute; left: 10px; right: 10px; bottom: 13px; background: #0c1a2e; border: 1px solid #3b4c6b; border-radius: 13px; padding: 12px; text-align: left; box-shadow: 0 8px 24px #0008; }
+    .location-alert .alert-top { font-size: 10px; }
+    .location-alert .alert-actions span { font-size: 9px; }
+    .footer { border-top: 1px solid #25344e; padding: 34px 0 40px; text-align: center; }
+    .footer-brand { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 34px; font-weight: 800; letter-spacing: -1px; }
+    .footer-brand .brand-mark { width: 42px; height: 48px; }
+    .footer-tag { margin-top: 13px; color: #9fa6d7; letter-spacing: 6px; font-size: 13px; font-weight: 750; }
+    .footer-note { color: #71809e; font-size: 11px; margin-top: 25px; }
+    @media (max-width: 850px) {
+      .page { width: min(100% - 40px, 650px); }
+      .site-header { height: 82px; }
+      .brand { font-size: 24px; }
+      .brand-mark { width: 40px; height: 47px; }
+      .nav { gap: 17px; font-size: 12px; }
+      .hero { grid-template-columns: 1fr .8fr; min-height: 430px; gap: 0; }
+      h1 { font-size: clamp(46px, 7vw, 65px); letter-spacing: -3px; }
+      .hero-copy p { font-size: 20px; }
+      .phone { width: 220px; height: 440px; }
+      .orbit { width: 340px; height: 340px; }
+      .phone-grid { gap: 20px; }
+      .phone.small { width: 100%; height: 450px; }
+      .scene { height: 125px; }
+      .map-area, .location-map { height: 350px; }
+      .features { margin-bottom: 40px; }
+      .feature p { font-size: 13px; }
+    }
+    @media (max-width: 600px) {
+      .page { width: calc(100% - 36px); }
+      .site-header { height: 76px; }
+      .brand { font-size: 21px; gap: 8px; }
+      .brand-mark { width: 34px; height: 40px; }
+      .nav { gap: 13px; }
+      .nav a:first-child, .nav a:nth-child(2) { display: none; }
+      .nav .button { min-height: 38px; padding: 0 16px; }
+      .hero { display: flex; flex-direction: column; align-items: stretch; padding-top: 28px; }
+      .hero-copy { padding: 0; text-align: center; }
+      .eyebrow { font-size: 10px; }
+      h1 { font-size: clamp(48px, 13vw, 68px); letter-spacing: -3px; }
+      .hero-copy p { margin: 17px auto 23px; font-size: 19px; max-width: 360px; }
+      .hero-copy .button { min-height: 49px; font-size: 15px; }
+      .hero-visual { min-height: 420px; margin-top: 16px; }
+      .phone { width: 220px; height: 425px; transform: rotate(4deg); }
+      .orbit { width: 330px; height: 330px; }
+      .features { grid-template-columns: repeat(2, 1fr); row-gap: 22px; margin: 4px 0 45px; }
+      .feature:nth-child(2) { border-right: 0; }
+      .feature:nth-child(3), .feature:nth-child(4) { padding-top: 15px; border-top: 1px solid #293953; }
+      .feature p { font-size: 13px; }
+      .feature svg { width: 37px; height: 37px; }
+      .showcase { padding-bottom: 50px; }
+      .phone-grid { grid-template-columns: 1fr; gap: 42px; }
+      .phone.small { width: 258px; height: 500px; }
+      .scene { height: 145px; }
+      .map-area, .location-map { height: 400px; }
+      .footer-brand { font-size: 28px; }
+      .footer-tag { font-size: 10px; letter-spacing: 4px; }
+    }
+
+    .logo-hours { color: var(--lime); }
+    .scene img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .launch-section { padding: 54px 0 70px; border-top: 1px solid #25344e; }
+    .launch-card { max-width: 720px; margin: 0 auto; padding: clamp(22px, 4vw, 42px); border: 1px solid #263854; border-radius: 24px; background: #0a1a30; }
+    .launch-card h2 { margin: 0; font-size: clamp(30px, 4vw, 43px); letter-spacing: -1.5px; }
+    .launch-card > p { color: var(--muted); line-height: 1.55; margin: 12px 0 25px; }
+    .launch-form { display: grid; gap: 14px; }
+    .field { display: grid; gap: 7px; }
+    .field label { font-size: 13px; font-weight: 650; color: #e9edfb; }
+    .field input, .field textarea { width: 100%; border: 1px solid #30435f; background: #07152a; color: var(--white); border-radius: 11px; padding: 13px 14px; font: inherit; font-size: 14px; outline: none; }
+    .field input:focus, .field textarea:focus { border-color: var(--lime); box-shadow: 0 0 0 3px #a8f52d20; }
+    .field textarea { min-height: 112px; resize: vertical; }
+    .consent { display: flex; align-items: flex-start; gap: 10px; color: #c2cbe0; font-size: 12px; line-height: 1.45; }
+    .consent input { accent-color: var(--lime); margin-top: 2px; }
+    .privacy-note { color: #9ba8c2; font-size: 11px; line-height: 1.55; margin: 0; }
+    .form-status { color: var(--lime); font-size: 12px; min-height: 1em; }
+    @media (max-width: 600px) { .launch-section { padding: 42px 0 50px; } .launch-card { border-radius: 18px; } }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button { transition: none; } }
+  </style>
+</head>
+<body>
+  <header class="site-header page">
+    <a class="brand" href="#" aria-label="AfterHours home">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="3.5"/>
+        <circle cx="24" cy="6" r="4.7" fill="currentColor"/>
+        <circle cx="8.4" cy="33" r="4.7" fill="currentColor"/>
+        <circle cx="39.6" cy="33" r="4.7" fill="currentColor"/>
+      </svg>
+      <span>After<span class="logo-hours">Hours</span></span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a class="button" href="#launch-updates">Get Updates</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero page" id="about">
+      <div class="hero-copy">
+        <div class="eyebrow">Your night. Your people. Your peace of mind.</div>
+        <h1>Go out.<br />Stay <span class="accent">connected.</span></h1>
+        <p>The night-out app that keeps your crew in the loop.</p>
+        <a class="button" id="download" href="#launch-updates">
+          Get Launch Updates
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-visual" aria-label="AfterHours group chat app preview">
+        <div class="orbit"></div>
+        <div class="phone">
+          <div class="phone-inner">
+            <div class="status"><span>11:47</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
+            <div class="appbar">
+              <svg class="mini-mark" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="4"/><circle cx="24" cy="6" r="5" fill="currentColor"/><circle cx="8.4" cy="33" r="5" fill="currentColor"/><circle cx="39.6" cy="33" r="5" fill="currentColor"/></svg>
+              AfterHours
+            </div>
+            <div class="chat-screen">
+              <div class="night-title"><span>‹ &nbsp; Your Night</span><strong>Night Crew⌄</strong><span>•••</span></div>
+              <div class="chat-date">TONIGHT · 11:42 PM</div>
+              <div class="message"><div class="name">Maya</div><div class="bubble">Just got to The Watering Hole 🍸</div></div>
+              <div class="message"><div class="name">Jordan</div><div class="bubble">On my way! Save us a spot.</div></div>
+              <div class="message mine"><div class="name">You</div><div class="bubble">We're by the back patio ✨</div></div>
+              <div class="message"><div class="name">Sam</div><div class="bubble">Everyone good? Checking in 💚</div></div>
+              <div class="system-note">● &nbsp; 5 of 6 members checked in</div>
+              <div class="message"><div class="name">Maya</div><div class="bubble">Yep! Let's head to the next stop.</div></div>
+            </div>
+            <div class="chat-input">Message Night Crew… <span style="float:right;color:#a8f52d">➤</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features page" id="features" aria-label="App features">
+      <div class="feature">
+        <svg viewBox="0 0 48 48"><path d="M24 4 42 11v12c0 11-8 17-18 22C14 40 6 34 6 23V11L24 4Z"/><path d="m15 24 6 6 12-13"/></svg>
+        <p>Real-Time<br />Safety Alerts</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 48 48"><circle cx="24" cy="11" r="6"/><circle cx="9" cy="17" r="5"/><circle cx="39" cy="17" r="5"/><path d="M10 40v-4c0-7 6-12 14-12s14 5 14 12v4H10Z"/><path d="M3 39v-4c0-5 3-9 8-10m34 14v-4c0-5-3-9-8-10"/></svg>
+        <p>Chat with Your Crew</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 48 48"><path d="M24 42s13-13 13-25a13 13 0 1 0-26 0c0 12 13 25 13 25Z"/><circle cx="24" cy="17" r="4"/><path d="M6 40h10m16 0h10"/></svg>
+        <p>Track Your<br />Route</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 48 48"><rect x="4" y="12" width="40" height="30" rx="5"/><path d="M15 12 19 6h10l4 6"/><circle cx="24" cy="27" r="8"/></svg>
+        <p>Post the<br />Night</p>
+      </div>
+    </section>
+
+    <section class="showcase page">
+      <div class="section-heading">
+        <div class="eyebrow">Everything in one place</div>
+        <h2>Make memories. Look out for each other.</h2>
+        <p>Share the highlights, keep the night moving, and make sure everyone gets home together.</p>
+      </div>
+
+      <div class="phone-grid">
+        <!-- Phone 1: nightlife photo feed -->
+        <article class="phone-card">
+          <h3>Post the Night</h3>
+          <p>Share the places, drinks, and moments.</p>
+          <div class="phone small">
+            <div class="phone-inner">
+              <div class="status"><span>11:41</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
+              <div class="screen-heading"><span>‹</span><span>Your Night</span><span>•••</span></div>
+              <div class="feed">
+                <div class="feed-user"><strong>Night Crew · Tonight</strong><span>•••</span></div>
+                <div class="scene">
+                  <img src="afterhours-assets/nightclub-cocktails.png" alt="Cocktails at a lively, dimly lit nightclub with a softly blurred crowd and blue-purple lights" />
+                  <div class="scene-caption">First round at The Watering Hole 🍹</div>
+                </div>
+                <div class="feed-actions"><b>♥ 24</b><span>♡ 6 comments</span><span>↗ Share</span></div>
+                <div class="feed-user"><strong>Jordan · 11:56 PM</strong><span>•••</span></div>
+                <div class="scene" style="height:126px">
+                  <img src="afterhours-assets/rooftop-bar.png" alt="Packed rooftop bar at night with cocktails, city lights, and softly out-of-focus guests" />
+                  <div class="scene-caption">One more song 💜</div>
+                </div>
+                <div class="feed-actions"><b>♥ 31</b><span>♡ 9 comments</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Phone 2: route map -->
+        <article class="phone-card">
+          <h3>Track Your Route</h3>
+          <p>Every stop, mapped in one shared night.</p>
+          <div class="phone small">
+            <div class="phone-inner">
+              <div class="status"><span>11:43</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
+              <div class="screen-heading"><span>‹</span><span>Tonight's Route</span><span>•••</span></div>
+              <div class="map-area">
+                <svg viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Map with route connecting three stops">
+                  <rect width="240" height="400" fill="#0b1c34"/>
+                  <g stroke="#203651" stroke-width="13" fill="none" opacity=".9"><path d="M-30 60 270 330M-30 180 270 20M-30 350 260 110M20 -30 220 430M145 -30 40 430"/></g>
+                  <g stroke="#304865" stroke-width="2" fill="none"><path d="M0 90 240 310M0 220 240 20M0 340 240 120M60 0 170 400M190 0 80 400"/></g>
+                  <path d="M60 75C90 115 165 132 155 205S75 270 90 335" stroke="#a8f52d" stroke-width="3" stroke-dasharray="3 8" stroke-linecap="round" fill="none"/>
+                  <g fill="#a8f52d" stroke="#e5ffb0" stroke-width="2"><circle cx="60" cy="75" r="8"/><circle cx="155" cy="205" r="8"/><circle cx="90" cy="335" r="8"/></g>
+                  <g fill="#a8f52d" opacity=".15"><circle cx="60" cy="75" r="18"/><circle cx="155" cy="205" r="18"/><circle cx="90" cy="335" r="18"/></g>
+                </svg>
+                <div class="map-label one">1 · The Watering Hole</div>
+                <div class="map-label two">2 · Stone Pub</div>
+                <div class="map-label three">3 · Late-night bites</div>
+                <div class="map-footer"><span>3 stops · 1.8 mi</span><strong>Route saved ✓</strong></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Phone 3: live crew locations and check-in alert -->
+        <article class="phone-card">
+          <h3>Know Everyone's Safe</h3>
+          <p>See the crew together—or spot who's apart.</p>
+          <div class="phone small">
+            <div class="phone-inner">
+              <div class="status"><span>11:43</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
+              <div class="screen-heading"><span>‹</span><span>Night Crew</span><span>•••</span></div>
+              <div class="location-map">
+                <div class="crew-count"><span>Live crew locations</span><strong>● 5 online</strong></div>
+                <svg viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Five green location dots together and one separated dot">
+                  <rect width="240" height="400" fill="#0b1c34"/>
+                  <g stroke="#203651" stroke-width="13" fill="none"><path d="M-20 70 270 330M-30 200 270 40M-30 350 250 100M35 -20 200 430M190 -20 50 430"/></g>
+                  <g stroke="#304865" stroke-width="2" fill="none"><path d="M0 115 240 300M0 270 240 70M65 0 180 400M210 0 65 400"/></g>
+                  <circle cx="107" cy="190" r="62" fill="#a8f52d" opacity=".06" stroke="#a8f52d" stroke-width="2"/>
+                  <circle cx="107" cy="190" r="42" fill="#a8f52d" opacity=".07" stroke="#a8f52d" stroke-width="1.5"/>
+                  <g fill="#a8f52d" stroke="#e5ffb0" stroke-width="2">
+                    <circle cx="88" cy="174" r="7"/><circle cx="115" cy="164" r="7"/><circle cx="129" cy="190" r="7"/><circle cx="99" cy="211" r="7"/><circle cx="121" cy="220" r="7"/>
+                    <circle cx="198" cy="92" r="8"/>
+                  </g>
+                  <g fill="#a8f52d" opacity=".17"><circle cx="88" cy="174" r="17"/><circle cx="115" cy="164" r="17"/><circle cx="129" cy="190" r="17"/><circle cx="99" cy="211" r="17"/><circle cx="121" cy="220" r="17"/><circle cx="198" cy="92" r="20"/></g>
+                  <path d="M198 92 159 130" stroke="#a8f52d" stroke-width="1.5" stroke-dasharray="4 5" opacity=".7"/>
+                </svg>
+                <div class="location-alert">
+                  <div class="alert-top">
+                    <svg class="alert-symbol" viewBox="0 0 40 40" fill="none"><path d="M17 4 2 31c-2 4 0 6 4 6h28c4 0 6-3 4-6L23 4c-1-3-5-3-6 0Z" fill="currentColor"/><path d="M20 13v10m0 5v1" stroke="#25113f" stroke-width="3" stroke-linecap="round"/></svg>
+                    <div><strong>Ellie is all alone.</strong><br /><span>Check in?</span></div>
+                  </div>
+                  <div class="alert-actions"><span>Ignore</span><span>Check In</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="launch-section page" id="launch-updates">
+      <div class="launch-card">
+        <div class="eyebrow">Coming soon</div>
+        <h2>Be first in the loop.</h2>
+        <p>AfterHours is getting ready for its first night out. Leave your details to hear when the app is available and share ideas that could make it better.</p>
+        <!-- Connect this form to Formspree (or another form service) before publishing.
+             Replace YOUR_FORM_ID with the endpoint supplied by your form provider. -->
+        <form class="launch-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="hidden" name="_subject" value="New AfterHours launch update signup" />
+          <div class="field">
+            <label for="contact-name">Name <span style="color:#8e9bb6;font-weight:400">(optional)</span></label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label for="contact-email">Email address</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="feedback">Comments, suggestions, or concerns <span style="color:#8e9bb6;font-weight:400">(optional)</span></label>
+            <textarea id="feedback" name="comments_suggestions_concerns" placeholder="What would you love to see in AfterHours?"></textarea>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="launch_updates_consent" value="yes" required />
+            <span>Yes, I’d like to receive email updates about the AfterHours launch.</span>
+          </label>
+          <p class="privacy-note">Your contact information will only be used to send AfterHours launch updates and, if you leave feedback, to follow up about your suggestions, comments, or concerns. It will not be used for unrelated purposes or unsolicited marketing. We won't spam you.</p>
+          <button class="button" type="submit">Notify Me at Launch
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <a class="footer-brand" href="#">
+      <svg class="brand-mark" viewBox="0 0 48 56" fill="none" aria-hidden="true"><path d="M24 3C14 3 5 9 4 19c-1 12 10 25 20 33 10-8 21-21 20-33C43 9 34 3 24 3Z" stroke="currentColor" stroke-width="4.5"/><path d="m24 15 3.5 6.2 7 1.2-5 4.9 1.1 7-6.6-3.3-6.6 3.3 1.1-7-5-4.9 7-1.2L24 15Z" fill="currentColor"/></svg>
+      <span>After<span class="logo-hours">Hours</span></span>
+    </a>
+    <div class="footer-tag">A SAFER NIGHT OUT</div>
+    <div class="footer-note">© <span id="year"></span> AfterHours. Look out for your people.</div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
