@@ -91,13 +91,6 @@
     .message.mine .bubble { background: #6842c9; border-color: #805cf1; border-radius: 13px 13px 4px 13px; }
     .system-note { margin: 14px 0; text-align: center; color: var(--lime); font-size: 9px; }
     .chat-input { position: absolute; left: 12px; right: 12px; bottom: 13px; border: 1px solid #263a57; background: #0b1a30; color: #7887a5; border-radius: 22px; padding: 10px 12px; font-size: 9px; }
-    .alert-card { position: absolute; left: 13px; right: 13px; bottom: 18px; padding: 13px 12px; border-radius: 17px; background: #0b192d; border: 1px solid #30415d; box-shadow: 0 12px 30px #0008; transform: rotate(-1deg); }
-    .alert-top { display: flex; gap: 10px; align-items: center; font-size: 11px; line-height: 1.35; }
-    .alert-symbol { width: 31px; height: 31px; color: var(--purple); flex: none; }
-    .alert-top span { color: var(--lavender); }
-    .alert-actions { display: flex; gap: 7px; margin-top: 11px; }
-    .alert-actions span { flex: 1; text-align: center; border-radius: 20px; padding: 8px 4px; background: #1a2942; font-size: 10px; }
-    .alert-actions span:last-child { background: var(--lime); color: #091426; font-weight: 800; }
     .features {
       display: grid; grid-template-columns: repeat(4, 1fr); margin: 5px 0 54px;
       border-top: 1px solid #1d2c44; border-bottom: 1px solid #1d2c44; padding: 22px 0;
@@ -115,60 +108,7 @@
     .phone-card { text-align: center; }
     .phone-card h3 { font-size: 18px; margin: 0 0 6px; }
     .phone-card > p { color: var(--muted); font-size: 13px; margin: 0 0 20px; }
-    .phone.small { width: min(100%, 258px); height: 500px; margin: 0 auto; transform: none; }
-    .screen-heading { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; font-size: 12px; font-weight: 750; border-bottom: 1px solid #1c2e49; }
-    .screen-heading small { color: #8f9dbb; font-weight: 500; display: block; margin-top: 3px; }
-    .feed { padding: 10px; }
-    .feed-user { display: flex; justify-content: space-between; align-items: center; font-size: 10px; margin: 2px 2px 8px; }
-    .feed-user span:last-child { color: var(--lime); }
-    .scene {
-      height: 145px; border-radius: 12px; overflow: hidden; position: relative; margin-bottom: 9px;
-      background: #17243c; border: 1px solid #2a3b58;
-    }
-    .scene svg { width: 100%; height: 100%; display: block; }
-    .scene-caption { position: absolute; left: 10px; bottom: 9px; font-size: 10px; font-weight: 750; text-shadow: 0 2px 5px #000; }
-    .feed-actions { color: #b9c3dc; font-size: 10px; padding: 2px 3px 9px; display: flex; gap: 14px; }
-    .feed-actions b { color: #ff5e8d; }
-    .map-area { height: 400px; position: relative; overflow: hidden; background: #0a1a30; }
-    .map-area svg, .location-map svg { width: 100%; height: 100%; display: block; }
-    .route-map-bg { position:absolute; inset:0; opacity:.95; }
-    .route-stops { position:absolute; inset:0; }
-    .route-stop { position:absolute; display:flex; align-items:center; gap:7px; padding:5px 8px 5px 5px; border-radius:24px; background:#0a172aee; border:1px solid #2b405f; box-shadow:0 5px 15px #0008; color:#f5f7ff; font-size:9px; font-weight:700; white-space:nowrap; }
-    .route-stop img { width:31px; height:31px; border-radius:50%; object-fit:cover; border:1.5px solid var(--lime); }
-    .route-stop small { display:block; color:#9caac6; font-size:7px; font-weight:500; margin-top:2px; }
-    .route-stop.one { top:49px; left:9px; }
-    .route-stop.two { top:168px; right:8px; }
-    .route-stop.three { bottom:65px; left:15px; }
-    .route-topline { position:absolute; top:9px; left:11px; right:11px; display:flex; justify-content:space-between; color:#dce4f6; font-size:9px; z-index:2; }
-    .route-topline strong { color:var(--lime); }
-    .map-footer { position: absolute; bottom: 10px; left: 10px; right: 10px; background: #101f38f2; border: 1px solid #30435f; border-radius: 12px; padding: 10px; font-size: 10px; display: flex; justify-content: space-between; z-index:3; }
-    .map-footer strong { color: var(--lime); }
-    .location-map { height: 400px; position: relative; background: #0a1a30; overflow: hidden; border-radius: 0 0 22px 22px; }
-    .location-map .location-bg { position:absolute; inset:0; }
-    .crew-count { display:none; }
-    .crew-count strong { color: var(--lime); }
-    .crew-cluster { position:absolute; width:145px; height:145px; left:27%; top:48%; transform:translate(-50%,-50%); border:2px solid #a8f52d66; border-radius:50%; background:#a8f52d16; box-shadow:inset 0 0 22px #a8f52d10, 0 0 18px #a8f52d12; z-index:2; }
-    .crew-cluster:before { content:""; position:absolute; inset:0; border:0; border-radius:50%; }
-    .crew-dot { position:absolute; width:17px; height:17px; border-radius:50%; background:var(--lime); border:0; box-shadow:0 0 0 7px #a8f52d1a, 0 0 14px #a8f52d55; z-index:3; }
-    .crew-dot.d1 { left:22px; top:57px; } .crew-dot.d2 { left:48px; top:27px; } .crew-dot.d3 { right:42px; top:43px; } .crew-dot.d4 { left:39px; bottom:34px; } .crew-dot.d5 { right:23px; bottom:47px; } .crew-dot.d2 { left:66px; top:22px; } .crew-dot.d3 { right:25px; top:48px; }
-    .crew-dot.d4 { left:44px; bottom:26px; } .crew-dot.d5 { right:34px; bottom:24px; }
-    .crew-dot.alone { width:19px; height:19px; right:18%; top:70%; box-shadow:0 0 0 10px #a8f52d18,0 0 18px #a8f52d66; }
-    .alone-label { display:none; }
-    .cluster-label { display:none; }
-    .location-alert { position:absolute; left:34%; right:6%; top:22px; bottom:auto; background:#10172ff5; border:1.5px solid #8b45ff; border-radius:15px; padding:10px 10px 9px; text-align:left; box-shadow:0 8px 24px #0007; z-index:5; }
-    .location-alert .alert-top { font-size:10px; gap:8px; line-height:1.25; }
-    .location-alert .alert-actions span { font-size:9px; padding:7px 3px; }
-
-    @media (max-width: 600px) {
-      .location-alert { left: 33%; right: 5%; top: 20px; padding: 9px; }
-      .location-alert .alert-symbol { width: 29px; height: 29px; }
-      .crew-cluster { width: 132px; height: 132px; left: 27%; top: 49%; }
-      .crew-dot.d1 { left: 18px; top: 52px; }
-      .crew-dot.d2 { left: 43px; top: 23px; }
-      .crew-dot.d3 { right: 35px; top: 39px; }
-      .crew-dot.d4 { left: 34px; bottom: 29px; }
-      .crew-dot.d5 { right: 19px; bottom: 42px; }
-    }
+    .phone-shot { display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto; }
 
     .footer { border-top: 1px solid #25344e; padding: 34px 0 40px; text-align: center; }
     .footer-brand { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 34px; font-weight: 800; letter-spacing: -1px; }
@@ -187,9 +127,6 @@
       .phone { width: 220px; height: 440px; }
       .orbit { width: 340px; height: 340px; }
       .phone-grid { gap: 20px; }
-      .phone.small { width: 100%; height: 450px; }
-      .scene { height: 125px; }
-      .map-area, .location-map { height: 350px; }
       .features { margin-bottom: 40px; }
       .feature p { font-size: 13px; }
     }
@@ -217,15 +154,11 @@
       .feature svg { width: 37px; height: 37px; }
       .showcase { padding-bottom: 50px; }
       .phone-grid { grid-template-columns: 1fr; gap: 42px; }
-      .phone.small { width: 258px; height: 500px; }
-      .scene { height: 145px; }
-      .map-area, .location-map { height: 400px; }
       .footer-brand { font-size: 28px; }
       .footer-tag { font-size: 10px; letter-spacing: 4px; }
     }
 
     .logo-hours { color: var(--lime); }
-    .scene img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .launch-section { padding: 54px 0 70px; border-top: 1px solid #25344e; }
     .launch-card { max-width: 720px; margin: 0 auto; padding: clamp(22px, 4vw, 42px); border: 1px solid #263854; border-radius: 24px; background: #0a1a30; }
     .launch-card h2 { margin: 0; font-size: clamp(30px, 4vw, 43px); letter-spacing: -1.5px; }
@@ -326,108 +259,22 @@
       </div>
 
       <div class="phone-grid">
-        <!-- Phone 1: nightlife photo feed -->
         <article class="phone-card">
           <h3>Post the Night</h3>
           <p>Share the places, drinks, and moments.</p>
-          <div class="phone small">
-            <div class="phone-inner">
-              <div class="status"><span>11:41</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
-              <div class="screen-heading"><span>‹</span><span>Your Night</span><span>•••</span></div>
-              <div class="feed">
-                <div class="feed-user"><strong>Night Crew · Tonight</strong><span>•••</span></div>
-                <div class="scene">
-                  <img src="afterhours-assets/nightclub-cocktails.png" alt="Cocktails at a lively, dimly lit nightclub with a softly blurred crowd and blue-purple lights" />
-                  <div class="scene-caption">First round at The Watering Hole 🍹</div>
-                </div>
-                <div class="feed-actions"><b>♥ 24</b><span>♡ 6 comments</span><span>↗ Share</span></div>
-                <div class="feed-user"><strong>Jordan · 11:56 PM</strong><span>•••</span></div>
-                <div class="scene" style="height:126px">
-                  <img src="afterhours-assets/rooftop-bar.png" alt="Packed rooftop bar at night with cocktails, city lights, and softly out-of-focus guests" />
-                  <div class="scene-caption">One more song 💜</div>
-                </div>
-                <div class="feed-actions"><b>♥ 31</b><span>♡ 9 comments</span></div>
-              </div>
-            </div>
-          </div>
+          <img class="phone-shot" src="images/phone_photo_feed.png" alt="AfterHours photo feed showing the crew's posts from a night out, with likes and comments" loading="lazy" />
         </article>
 
-        <!-- Phone 2: route map -->
         <article class="phone-card">
           <h3>Track Your Route</h3>
           <p>Every stop, mapped in one shared night.</p>
-          <div class="phone small">
-            <div class="phone-inner">
-              <div class="status"><span>11:43</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
-              <div class="screen-heading"><span>‹</span><span>Tonight's Route</span><span>•••</span></div>
-              <div class="map-area">
-                <div class="route-topline"><span>TONIGHT'S STOPS</span><strong>● LIVE ROUTE</strong></div>
-                <svg class="route-map-bg" viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Dark street map with a dotted route connecting three nightlife stops">
-                  <rect width="240" height="400" fill="#0a1a30"/>
-                  <g fill="none" stroke="#142b46" stroke-width="15" opacity=".95">
-                    <path d="M-35 70 270 345M-35 205 270 28M-25 365 260 110M28 -30 218 430M145 -30 42 430"/>
-                  </g>
-                  <g fill="none" stroke="#29415f" stroke-width="2.2" opacity=".9">
-                    <path d="M-20 43 260 295M-25 158 260 12M-15 315 250 86M50 -20 225 420M185 -20 65 420M0 270 240 220"/>
-                    <path d="M15 0 0 400M82 0 62 400M160 0 178 400M220 0 208 400" stroke-width="1"/>
-                  </g>
-                  <g fill="#1a3451" opacity=".8"><rect x="12" y="105" width="35" height="25" rx="3"/><rect x="166" y="70" width="44" height="31" rx="3"/><rect x="105" y="270" width="38" height="24" rx="3"/><rect x="14" y="310" width="32" height="25" rx="3"/></g>
-                  <path d="M48 91 C70 111 77 129 96 151 S155 176 161 211 S124 270 101 319" fill="none" stroke="#a8f52d" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 8"/>
-                  <g fill="#a8f52d" stroke="#e9ffbf" stroke-width="1.5"><circle cx="48" cy="91" r="6"/><circle cx="161" cy="211" r="6"/><circle cx="101" cy="319" r="6"/></g>
-                  <g fill="#a8f52d" opacity=".16"><circle cx="48" cy="91" r="17"/><circle cx="161" cy="211" r="17"/><circle cx="101" cy="319" r="17"/></g>
-                </svg>
-                <div class="route-stops">
-                  <div class="route-stop one"><img src="afterhours-assets/nightclub-cocktails.png" alt=""/><span>1 · The Watering Hole<small>Arrived · 9:42 PM</small></span></div>
-                  <div class="route-stop two"><img src="afterhours-assets/rooftop-bar.png" alt=""/><span>2 · Stone Pub<small>Arrived · 11:08 PM</small></span></div>
-                  <div class="route-stop three"><img src="afterhours-assets/nightclub-cocktails.png" alt=""/><span>3 · Late-night bites<small>Next stop · 12:15 AM</small></span></div>
-                </div>
-                <div class="map-footer"><span>3 stops · 1.8 mi</span><strong>Route saved ✓</strong></div>
-              </div>
-            </div>
-          </div>
+          <img class="phone-shot" src="images/phone_route_map.png" alt="AfterHours map showing a dotted route connecting three nightlife stops" loading="lazy" />
         </article>
 
-        <!-- Phone 3: live crew locations and check-in alert -->
         <article class="phone-card">
           <h3>Know Everyone's Safe</h3>
           <p>See the crew together—or spot who's apart.</p>
-          <div class="phone small">
-            <div class="phone-inner">
-              <div class="status"><span>11:43</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
-              <div class="screen-heading"><span>‹</span><span>Night Crew</span><span>•••</span></div>
-              <div class="location-map">
-                <svg class="location-bg" viewBox="0 0 240 400" preserveAspectRatio="xMidYMid slice" aria-label="Dark street map with five grouped green location dots and one separated green location dot">
-                  <rect width="240" height="400" fill="#0a1a30"/>
-                  <g fill="none" stroke="#142b46" stroke-width="13">
-                    <path d="M-35 45 280 330M-30 165 270 5M-25 360 265 90M20 -25 225 430M175 -30 45 430"/>
-                    <path d="M-30 280 260 125M-20 90 250 250"/>
-                  </g>
-                  <g fill="none" stroke="#29415f" stroke-width="2.2" opacity=".9">
-                    <path d="M-20 82 260 305M-20 230 260 35M42 -20 195 420M218 -20 48 420M-10 340 245 165M15 25 240 375"/>
-                  </g>
-                  <g fill="#142b46" opacity=".85">
-                    <path d="m20 32 30-13 14 28-30 14zM151 70l28-12 14 27-28 13zM13 260l33-14 15 30-34 14zM175 270l36-15 14 31-35 15z"/>
-                  </g>
-                  <path d="M100 211 C133 220 128 255 150 270 S184 278 199 290" fill="none" stroke="#9a82ff" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 5"/>
-                </svg>
-                <div class="crew-cluster">
-                  <i class="crew-dot d1"></i><i class="crew-dot d2"></i><i class="crew-dot d3"></i><i class="crew-dot d4"></i><i class="crew-dot d5"></i>
-                </div>
-                <i class="crew-dot alone"></i>
-                <div class="location-alert">
-                  <div class="alert-top">
-                    <svg class="alert-symbol" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M17 4 2 31c-2 4 0 6 4 6h28c4 0 6-3 4-6L23 4c-1-3-5-3-6 0Z" fill="currentColor"/><path d="M20 13v10m0 5v1" stroke="#25113f" stroke-width="3" stroke-linecap="round"/></svg>
-                    <div><strong>Ellie is all alone.</strong><br /><span>Check in?</span></div>
-                  </div>
-                  <div class="alert-actions"><span>Ignore</span><span>Check In</span></div>
-                </div>
-                <div style="position:absolute;top:0;right:10%;z-index:4;display:flex;gap:7px;transform:rotate(18deg)">
-                  <i style="display:block;width:4px;height:17px;background:var(--lime);border-radius:4px"></i>
-                  <i style="display:block;width:4px;height:17px;background:var(--lime);border-radius:4px;transform:translateY(8px)"></i>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img class="phone-shot" src="images/phone_location.png" alt="AfterHours map with the crew grouped together and an alert that one member is alone, with a prompt to check in" loading="lazy" />
         </article>
       </div>
     </section>
