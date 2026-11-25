@@ -61,36 +61,7 @@
     .hero-visual { min-height: 470px; display: flex; align-items: center; justify-content: center; position: relative; }
     .orbit { position: absolute; width: 440px; height: 440px; border: 2px solid #4d8d2c; border-radius: 50%; opacity: .65; }
     .orbit:after { content: ""; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--lime); top: 70px; right: 17px; box-shadow: 0 0 22px var(--lime); }
-    .phone {
-      width: 258px; height: 505px; padding: 8px; border-radius: 39px;
-      background: linear-gradient(135deg, #b8bdc9, #303a4a 15%, #060b13 34%, #8993a2 52%, #151c2b 72%, #a4acb8);
-      box-shadow: 0 24px 65px #0009, inset 0 0 0 1px #e3e8f7aa;
-      position: relative; z-index: 1; transform: rotate(8deg);
-    }
-    .phone-inner {
-      height: 100%; border-radius: 32px; overflow: hidden; background: #08172b;
-      border: 1px solid #1d2d47; position: relative;
-    }
-    .phone-inner:before {
-      content: ""; position: absolute; z-index: 5; top: 8px; left: 50%; transform: translateX(-50%);
-      width: 86px; height: 21px; border-radius: 0 0 14px 14px; background: #020711;
-    }
-    .status { height: 36px; display: flex; align-items: center; justify-content: space-between; padding: 7px 17px 0; font-size: 9px; font-weight: 750; color: #f6f7ff; position: relative; z-index: 2; }
-    .status-icons { letter-spacing: 1px; }
-    .appbar { height: 48px; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 13px; font-weight: 750; border-bottom: 1px solid #1b2b43; }
-    .mini-mark { width: 19px; height: 22px; color: var(--lime); }
-    .chat-screen { padding: 13px 13px 14px; }
-    .night-title { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 10px; margin-bottom: 14px; }
-    .night-title strong { color: var(--white); font-size: 13px; }
-    .chat-date { text-align: center; color: #7786a7; font-size: 9px; margin: 4px 0 14px; }
-    .message { max-width: 88%; margin: 8px 0; }
-    .message .name { color: #aeb9d4; font-size: 9px; margin: 0 0 4px 6px; }
-    .bubble { background: #192b47; border: 1px solid #263b5a; padding: 9px 11px; border-radius: 13px 13px 13px 4px; font-size: 10px; line-height: 1.35; color: #f4f5ff; }
-    .message.mine { margin-left: auto; }
-    .message.mine .name { text-align: right; margin-right: 6px; }
-    .message.mine .bubble { background: #6842c9; border-color: #805cf1; border-radius: 13px 13px 4px 13px; }
-    .system-note { margin: 14px 0; text-align: center; color: var(--lime); font-size: 9px; }
-    .chat-input { position: absolute; left: 12px; right: 12px; bottom: 13px; border: 1px solid #263a57; background: #0b1a30; color: #7887a5; border-radius: 22px; padding: 10px 12px; font-size: 9px; }
+    .hero-phone { display: block; width: 262px; height: auto; position: relative; z-index: 1; transform: rotate(8deg); filter: drop-shadow(0 24px 40px rgba(0,0,0,.6)); }
     .features {
       display: grid; grid-template-columns: repeat(4, 1fr); margin: 5px 0 54px;
       border-top: 1px solid #1d2c44; border-bottom: 1px solid #1d2c44; padding: 22px 0;
@@ -124,7 +95,7 @@
       .hero { grid-template-columns: 1fr .8fr; min-height: 430px; gap: 0; }
       h1 { font-size: clamp(46px, 7vw, 65px); letter-spacing: -3px; }
       .hero-copy p { font-size: 20px; }
-      .phone { width: 220px; height: 440px; }
+      .hero-phone { width: 226px; }
       .orbit { width: 340px; height: 340px; }
       .phone-grid { gap: 20px; }
       .features { margin-bottom: 40px; }
@@ -145,7 +116,7 @@
       .hero-copy p { margin: 17px auto 23px; font-size: 19px; max-width: 360px; }
       .hero-copy .button { min-height: 49px; font-size: 15px; }
       .hero-visual { min-height: 420px; margin-top: 16px; }
-      .phone { width: 220px; height: 425px; transform: rotate(4deg); }
+      .hero-phone { width: 214px; transform: rotate(4deg); }
       .orbit { width: 330px; height: 330px; }
       .features { grid-template-columns: repeat(2, 1fr); row-gap: 22px; margin: 4px 0 45px; }
       .feature:nth-child(2) { border-right: 0; }
@@ -209,26 +180,7 @@
 
       <div class="hero-visual" aria-label="AfterHours group chat app preview">
         <div class="orbit"></div>
-        <div class="phone">
-          <div class="phone-inner">
-            <div class="status"><span>11:47</span><span class="status-icons">▂ ▴ ◉ ▰</span></div>
-            <div class="appbar">
-              <svg class="mini-mark" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="4"/><circle cx="24" cy="6" r="5" fill="currentColor"/><circle cx="8.4" cy="33" r="5" fill="currentColor"/><circle cx="39.6" cy="33" r="5" fill="currentColor"/></svg>
-              AfterHours
-            </div>
-            <div class="chat-screen">
-              <div class="night-title"><span>‹ &nbsp; Your Night</span><strong>Night Crew⌄</strong><span>•••</span></div>
-              <div class="chat-date">TONIGHT · 11:42 PM</div>
-              <div class="message"><div class="name">Maya</div><div class="bubble">Just got to The Watering Hole 🍸</div></div>
-              <div class="message"><div class="name">Jordan</div><div class="bubble">On my way! Save us a spot.</div></div>
-              <div class="message mine"><div class="name">You</div><div class="bubble">We're by the back patio ✨</div></div>
-              <div class="message"><div class="name">Sam</div><div class="bubble">Everyone good? Checking in 💚</div></div>
-              <div class="system-note">● &nbsp; 5 of 6 members checked in</div>
-              <div class="message"><div class="name">Maya</div><div class="bubble">Yep! Let's head to the next stop.</div></div>
-            </div>
-            <div class="chat-input">Message Night Crew… <span style="float:right;color:#a8f52d">➤</span></div>
-          </div>
-        </div>
+        <img class="hero-phone" src="images/phone_location.png" alt="AfterHours app showing the crew grouped together on a map with an alert that one member is alone and a prompt to check in" />
       </div>
     </section>
 
@@ -286,7 +238,7 @@
         <p>AfterHours is getting ready for its first night out. Leave your details to hear when the app is available and share ideas that could make it better.</p>
         <!-- Connect this form to Formspree (or another form service) before publishing.
              Replace YOUR_FORM_ID with the endpoint supplied by your form provider. -->
-        <form class="launch-form" action="https://formspree.io/f/xnpdlrgj" method="POST">
+        <form class="launch-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <input type="hidden" name="_subject" value="New AfterHours launch update signup" />
           <div class="field">
             <label for="contact-name">Name <span style="color:#8e9bb6;font-weight:400">(optional)</span></label>
